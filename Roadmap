@@ -1,0 +1,13 @@
+Whats done:
+    Embed server
+    Reading Data From Database
+    Packaging to EXE
+    Getting data in UTF-8 //system locale must set to UTF8!
+    Transformation  //complete, but need test
+    Adding UUID gen in xml injection
+
+
+TODO TASKS:
+    SOAP 1.1 request, response
+    Encryption  + Digest
+    https://smev3.gosuslugi.ru/portal/faq.jsp
