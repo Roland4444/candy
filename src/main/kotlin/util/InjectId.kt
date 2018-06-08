@@ -1,16 +1,13 @@
 package util
 import java.io.File
-import java.io.InputStream
 import java.io.FileWriter
-import spark.Spark.path
 import java.nio.file.Paths
 import java.nio.file.Files
-
-
 class InjectId() {
     fun inject(input:String):String{
         var result:String=""
         val pStart=input.indexOf("MessageID>")
+        if (pStart==-1) return input
         for (i in 0..pStart+9)
             result+=input.get(i)
         var offset=0
@@ -24,7 +21,7 @@ class InjectId() {
     fun inject(input:String, output:String){
         val lines = Files.readAllLines(Paths.get(input))
         val wr = FileWriter(output)
-        wr.write(inject(lines.get(0)))
+        File(input).readLines().forEach{            wr.write(inject(it).replace("\n",""))}
         wr.close()
     }
 

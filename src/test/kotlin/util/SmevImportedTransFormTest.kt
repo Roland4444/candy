@@ -13,6 +13,15 @@ import java.nio.file.Paths
 class SmevImportedTransFormTest {
 
     @Test
+    fun tarnsformHighligthedData(){
+        val test = SmevImportedTransForm()
+        val `in` = FileInputStream("1.xml")
+        val out = FileOutputStream("TRANS.xml")
+        test.process(`in`, out)
+
+    }
+
+    @Test
     fun processini() {
         val test = SmevImportedTransForm()
         val wr = FileWriter("input.xml")

@@ -1,5 +1,5 @@
+import spark.Request
 import spark.Spark
-import spark.kotlin.*
 import spark.Spark.*
 import util.timeBasedUUID
 object server {
@@ -11,9 +11,13 @@ object server {
             print(t.generate())
             t.generate()
             }
+        get("/soap") {req,res ->
+        }
 
         post("/") {req,res ->
             res.body()
         }
+        class RequestStub : Request()
+
     }
 }
