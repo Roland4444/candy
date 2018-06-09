@@ -32,7 +32,7 @@ public class SAAJ {
         transformer.transform(sourceContent, console);
     }
 
-    String send(String filename, String result) throws Exception {
+    public String send(String filename, String result) throws Exception {
         SOAPConnectionFactory soapConnFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection connection = soapConnFactory.createConnection();
         MessageFactory messageFactory = MessageFactory.newInstance();

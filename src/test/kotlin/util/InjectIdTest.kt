@@ -3,7 +3,6 @@ package util
 import org.junit.Test
 
 import org.junit.Assert.*
-import java.io.File
 import java.io.FileWriter
 
 class InjectIdTest {
@@ -28,7 +27,7 @@ class InjectIdTest {
     fun inject2() {
         val parcer = InjectId()
         parcer.inject("1.xml","25.xml")
-        val send = SAAJ("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl")
+        val send = SAAJk("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl")
         send.send("25.xml", "23.xml")
     }
 

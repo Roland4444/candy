@@ -5,7 +5,7 @@ import org.bouncycastle.crypto.engines.GOST28147Engine;
 import org.bouncycastle.crypto.macs.HMac;
 import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
+import sun.misc.BASE64Encoder;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -13,23 +13,17 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Base64.Encoder;
-
 public class Gost3411Hash {
     String algo;
-
     public static final byte[] toByteArray( String hexString )
     {
         int arrLength = hexString.length() >> 1;
         byte buf[] = new byte[arrLength];
-
-        for ( int ii = 0; ii < arrLength; ii++ )
-        {
+        for ( int ii = 0; ii < arrLength; ii++ ){
             int index = ii << 1;
             String l_digit = hexString.substring( index, index + 2 );
             buf[ii] = ( byte ) Integer.parseInt( l_digit, 16 );
         }
-
         return buf;
     }
 
@@ -52,9 +46,6 @@ public class Gost3411Hash {
         return digest;
     }
 
-
-
-
     public String h(String data) throws NoSuchAlgorithmException {
         Security.addProvider(new BouncyCastleProvider());
         MessageDigest md = MessageDigest.getInstance( "GOST3411" );
@@ -63,10 +54,44 @@ public class Gost3411Hash {
         BigInteger out = new BigInteger( 1, digest );
       //  byte[] outshifted = this.shifting(digest);
         String hex = String.format( "%02x", new BigInteger( 1, digest ) );
+    //    System.out.println(hex);
+        return out.toString(16);
+    }
+
+    public byte[] hash_byte(String data) throws NoSuchAlgorithmException {
+        Security.addProvider(new BouncyCastleProvider());
+        MessageDigest md = MessageDigest.getInstance( "GOST3411" );
+        md.update( data.getBytes( StandardCharsets.UTF_8 ) );
+        byte[] digest = md.digest();
+        BigInteger out = new BigInteger( 1, digest );
+        String hex = String.format( "%02x", new BigInteger( 1, digest ) );
+        return digest;
+    }
+
+    public String base64(BigInteger  input){
+        return new BASE64Encoder().encode(input.toByteArray());
+    }
+
+    public String base64(byte[] input){
+        BigInteger out = new BigInteger( 1, input );
+        return new sun.misc.BASE64Encoder().encode(out.toByteArray());
+    }
+
+    public String h_Base64rfc2045(String data) throws NoSuchAlgorithmException {
+        return base64(hash_byte(data));
+    }
+
+    public String h_swapped(String data) throws NoSuchAlgorithmException {
+        Security.addProvider(new BouncyCastleProvider());
+        MessageDigest md = MessageDigest.getInstance( "GOST3411" );
+        md.update( data.getBytes( StandardCharsets.UTF_8 ) );
+        byte[] digest = md.digest();
+        BigInteger out = new BigInteger( 1, digest );
+        //  byte[] outshifted = this.shifting(digest);
+        String hex = String.format( "%02x", new BigInteger( 1, digest ) );
         System.out.println(hex);
         return swapString(out.toString(16));
     }
-
 
     public String hush(byte[] input){
         GOST3411Digest md = new GOST3411Digest(GOST28147Engine.getSBox("D-Test"));
@@ -81,17 +106,7 @@ public class Gost3411Hash {
         return in.toString(16);
     }
 
-    public String hushBase64(byte[] input){
-        GOST3411Digest md = new GOST3411Digest(GOST28147Engine.getSBox("D-Test"));
-        HMac gMac= new HMac(md);
-        byte[] key = "GOST3411".getBytes();
-        gMac.init(new KeyParameter(key));
-        gMac.update(input, 0, input.length);
-        byte[] mac = new byte[gMac.getMacSize()];
-        gMac.doFinal(mac, 0);
-        BigInteger in = new BigInteger(1, mac);
-        return Base64.getEncoder().encodeToString(mac);
-    }
+
 
     public String hush2(byte[] input){
         HMac gMac= new HMac(new GOST3411Digest(GOST28147Engine.getSBox("D-Test")));
@@ -133,9 +148,6 @@ public class Gost3411Hash {
                     0,   0,   0,   0,   0,   0,   0,   0,
                     0,   0,   0,   0,   0,   0,   0,   0
             };
-
-
-
 
 
     public void swap(byte[] in){
