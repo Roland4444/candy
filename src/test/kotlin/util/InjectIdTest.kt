@@ -22,15 +22,6 @@ class InjectIdTest {
         wr.close()
     }
 
-
-    @Test
-    fun inject2() {
-        val parcer = InjectId()
-        parcer.inject("1.xml","25.xml")
-        val send = SAAJk("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl")
-        send.send("25.xml", "23.xml")
-    }
-
     @Test
     fun inject22() {
         val parcer = InjectId()

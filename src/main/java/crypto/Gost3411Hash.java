@@ -1,13 +1,11 @@
 package crypto;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import sun.misc.BASE64Encoder;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 public class Gost3411Hash {
-    String algo;
     public Gost3411Hash(){
         Security.addProvider(new BouncyCastleProvider());
     }

@@ -8,7 +8,7 @@ public class SAAJTest {
 
     @Test
     public void send() throws Exception {
-        SAAJk saa= new SAAJk("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl");
+        SAAJ saa= new SAAJ("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl");
         assertNotEquals(null, saa.send("12.xml", "results.xml"));
     }
 }
