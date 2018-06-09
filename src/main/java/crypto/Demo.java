@@ -34,9 +34,12 @@ public class Demo {
     FileWriter wr = new FileWriter("cert.pem");
     wr.write(crypto.toPEM(subjectCert));
     wr.close();
+    Gost3411Hash hasher = new Gost3411Hash();
+    byte[] dataForSign=hasher.getBytesFromBase64("/jXl70XwnttJB5sSokwh8SaVHwo2gjgILSu0qBaLUAo=");
 
-
-    byte[] signature = crypto.sign("hello", subject.getPrivate());
+    byte[] signature = crypto.sign(dataForSign, subject.getPrivate());
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    System.out.println("Signature>>>>\n"+hasher.base64(signature)+"\n<<<<<");
     System.out.println(signature.length);
 
     CMSSignedData cades = crypto.signCades("hello", subject.getPrivate(), subjectCert);

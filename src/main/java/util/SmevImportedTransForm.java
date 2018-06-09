@@ -91,6 +91,7 @@ public class SmevImportedTransForm extends TransformSpi {
         DebugOutputStream debugStream = null;
 
         Stack<List<Namespace>> prefixMappingStack = new Stack<List<Namespace>>();
+
         int prefixCnt = 1;
         XMLEventReader src = null;
         XMLEventWriter dst = null;
@@ -192,6 +193,7 @@ public class SmevImportedTransForm extends TransformSpi {
                     EndElement dstEvent = eventFactory.get().
                             createEndElement(prefix, nsURI, srcEvent.getName().getLocalPart());
                     dst.add(dstEvent);
+                    prefixMappingStack.pop();
                     continue;
                 } else if (event.isAttribute()) {
 

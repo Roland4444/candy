@@ -62,9 +62,15 @@ public abstract class Crypto {
     certGen.addExtension(extendedKeyUsage, true, new ExtendedKeyUsage(new KeyPurposeId[]{id_kp_OCSPSigning, id_kp_timeStamping, id_kp_codeSigning}));
     certGen.addExtension(subjectKeyIdentifier, false, x509Utils.createSubjectKeyIdentifier(subject));
     certGen.addExtension(authorityKeyIdentifier, false, x509Utils.createAuthorityKeyIdentifier(issuer.getPublic()));
-
     X509CertificateHolder holder = certGen.build(getContentSigner(issuer.getPrivate()));
     return jcaConverter.getCertificate(holder);
+  }
+
+  public byte[] sign(byte[] data, PrivateKey key) throws OperatorCreationException, IOException {
+    ContentSigner signer = getContentSigner(key);
+    signer.getOutputStream().write(data);
+    System.out.println("Candy Charms >>>>>>>>>>>>>>>>>>>>>>"+signer.getSignature());
+    return signer.getSignature();
   }
 
   public byte[] sign(String data, PrivateKey key) throws OperatorCreationException, IOException {

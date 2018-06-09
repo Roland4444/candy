@@ -13,6 +13,16 @@ import java.nio.file.Paths
 class SmevImportedTransFormTest {
 
     @Test
+    fun tarnsformtoSign(){
+        val test = SmevImportedTransForm()
+        val `in` = FileInputStream("SendRequestRequestNoAttach.xml")
+        val out = FileOutputStream("TRANS.xml")
+        test.process(`in`, out)
+
+    }
+
+
+    @Test
     fun tarnsformHighligthedData(){
         val test = SmevImportedTransForm()
         val `in` = FileInputStream("1.xml")
@@ -20,6 +30,7 @@ class SmevImportedTransFormTest {
         test.process(`in`, out)
 
     }
+
 
     @Test
     fun processini() {

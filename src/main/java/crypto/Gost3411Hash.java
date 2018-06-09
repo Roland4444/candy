@@ -1,10 +1,14 @@
 package crypto;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Base64Encoder;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
+import java.util.Base64;
+
 public class Gost3411Hash {
     public Gost3411Hash(){
         Security.addProvider(new BouncyCastleProvider());
@@ -66,6 +70,10 @@ public class Gost3411Hash {
         String hex = String.format( "%02x", new BigInteger( 1, digest ) );
         System.out.println(hex);
         return swapString(out.toString(16));
+    }
+
+    public byte[] getBytesFromBase64(String input){
+        return Base64.getDecoder().decode(input);
     }
 
 }
