@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException
 import java.security.Security
 
 class Gost3411HashkTest {
-
     @Test
     fun hushBase64rfc2045() {
         val hasher = Gost3411Hashk()
