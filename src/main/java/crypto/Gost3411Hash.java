@@ -159,13 +159,7 @@ public class Gost3411Hash {
             i=i+2;
         }
     }
-    public ArrayList shifting(byte[] in){
-        ArrayList out = new ArrayList();
-        for (int i=1; i<=in.length; i++){
-            out.add(in[i-1]<<4);
-        }
-        return out;
-    }
+
 }
 
 
