@@ -6,8 +6,9 @@ Whats done:
     Adding UUID gen in xml injection
  	SOAP 1.1 request, response
  	Digest gost3411
+ 	Transform! stolen from Voskhod idiots
 TODO TASKS:
-   Transform! Encryption
+    Encryption
     https://smev3.gosuslugi.ru/portal/faq.jsp
 
 http://www.sql.ru/forum/1193215/otpravka-gotovogo-soap-xml
