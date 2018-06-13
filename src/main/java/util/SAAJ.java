@@ -24,7 +24,6 @@ public class SAAJ {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         Source sourceContent = soapResponse.getSOAPPart().getContent();
-
         System.out.println("\n----------SOAP Response-----------");
         StreamResult result = new StreamResult(new FileOutputStream(results));
         transformer.transform(sourceContent, result);

@@ -133,6 +133,15 @@ public class Gost3411HashTest  {
         arr1=Files.readAllBytes(path1);
         arr2=Files.readAllBytes(path2);
         assertEquals(hash.h_Base64rfc2045(arr1), hash.h_Base64rfc2045(arr2));
-
     }
+
+    @Test
+    public void base64testforSign0() throws NoSuchAlgorithmException {
+        Gost3411Hash hash = new Gost3411Hash();
+        String input = "<ns2:SenderProvidedRequestData Id=\"SIGNED_BY_CONSUMER\"><ns2:MessageID>db0486d0-3c08-11e5-95e2-d4c9eff07b77</ns2:MessageID><ns3:MessagePrimaryContent xmlns:ns3=\"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1\"><ns4:BreachRequest xmlns:ns4=\"urn://x-artefacts-gibdd-gov-ru/breach/root/1.0\" Id=\"PERSONAL_SIGNATURE\"><ns4:RequestedInformation><ns5:RegPointNum xmlns:ns5=\"urn://x-artefacts-gibdd-gov-ru/breach/commons/1.0\">Т785ЕС57</ns5:RegPointNum></ns4:RequestedInformation><ns4:Governance><ns6:Name xmlns:ns6=\"urn://x-artefacts-gibdd-gov-ru/breach/commons/1.0\">ГИБДД РФ</ns6:Name><ns7:Code xmlns:ns7=\"urn://x-artefacts-gibdd-gov-ru/breach/commons/1.0\">GIBDD</ns7:Code><ns8:OfficialPerson xmlns:ns8=\"urn://x-artefacts-gibdd-gov-ru/breach/commons/1.0\"><ns9:FamilyName xmlns:ns9=\"urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1\">Загурский</ns9:FamilyName><ns10:FirstName xmlns:ns10=\"urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1\">Андрей</ns10:FirstName><ns11:Patronymic xmlns:ns11=\"urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1\">Петрович</ns11:Patronymic></ns8:OfficialPerson></ns4:Governance></ns4:BreachRequest></ns3:MessagePrimaryContent><ns2:TestMessage></ns2:TestMessage></ns2:SenderProvidedRequestData>";
+        assertEquals("/jXl70XwnttJB5sSokwh8SaVHwo2gjgILSu0qBaLUAo=", hash.base64(hash.hash_byte(input)));
+    }
+
+
+
 }
