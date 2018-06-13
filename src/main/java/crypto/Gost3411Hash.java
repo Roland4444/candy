@@ -53,11 +53,22 @@ public class Gost3411Hash {
         return digest;
     }
 
+    public byte[] hash_byte(byte[] data) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance( "GOST3411" );
+        md.update( data );
+        byte[] digest = md.digest();
+        return digest;
+    }
+
     public String base64(byte[] input){
         return new sun.misc.BASE64Encoder().encode(input);
     }
 
     public String h_Base64rfc2045(String data) throws NoSuchAlgorithmException {
+        return base64(hash_byte(data));
+    }
+
+    public String h_Base64rfc2045(byte[] data) throws NoSuchAlgorithmException {
         return base64(hash_byte(data));
     }
 

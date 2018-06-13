@@ -3,7 +3,12 @@ package crypto;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import static org.junit.Assert.*;
@@ -117,5 +122,17 @@ public class Gost3411HashTest  {
         System.out.println(hex1);
         System.out.println(hex2);
         assertEquals(hash.hash_byte(input).length, hash.getBytesFromBase64("e76oVeYGapFDE+PV6glsj0XDjLHydLMd0cSkFPY8fWk=").length);
+    }
+
+    @Test
+    public void h_Base64rfc2045() throws IOException, NoSuchAlgorithmException {
+        byte[] arr1,arr2;
+        Gost3411Hash hash = new Gost3411Hash();
+        Path path1 = Paths.get("one");
+        Path path2 = Paths.get("two");
+        arr1=Files.readAllBytes(path1);
+        arr2=Files.readAllBytes(path2);
+        assertEquals(hash.h_Base64rfc2045(arr1), hash.h_Base64rfc2045(arr2));
+
     }
 }

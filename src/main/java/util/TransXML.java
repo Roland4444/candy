@@ -1,5 +1,6 @@
 package util;
 
+import javax.xml.ws.Action;
 import java.util.ArrayList;
 
 public class TransXML {
@@ -68,9 +69,9 @@ public class TransXML {
         ArrayList result=new ArrayList();
         for (int i=0;i<input.size();i++)            result.add(removefloatSpaces(input.get(i).toString()));
         return result;
-
     }
 
+    @Action
     public String removefloatSpaces(String input){
         String process = input;
         int k=0;
@@ -91,21 +92,31 @@ public class TransXML {
         return process;
     }
 
+    @Action
     public String removeBackSlash(String input){
-        String process=input;
-        int pos = process.indexOf("/>");
+        String process="";
+        int pos = input.indexOf("/>");
         if (pos ==-1)        return process;
         String tagName="";
+        int tracer = -1;
         boolean startTag=false;
-        for (int i=pos;i>0;i--){
-            if ((process.charAt(i)=='<')){
-                int tracer = i+1;
-                while (!startTag&&process.charAt(tracer)!=' ')  tagName+=process.charAt(tracer++);
-
+        for (int i=pos;i>=0;i--) {
+            if (input.charAt(i) == '<') {
+                tracer = i;
+                break;
             }
-
+        };
+        int index = tracer+1;
+        while ((input.charAt(index)!=' ') ) {
+            if (input.charAt(index)=='/') break;
+            tagName+=input.charAt(index);
+            index++;
         }
-
+        String finished = "></"+tagName+">";
+        for (int i=0; i<pos;i++){
+            process += input.charAt(i);
+        }
+        process+=finished;
         return process;
     }
 

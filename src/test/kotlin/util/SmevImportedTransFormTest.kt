@@ -33,6 +33,32 @@ class SmevImportedTransFormTest {
 
 
     @Test
+    fun processini1() {
+        val test = SmevImportedTransForm()
+        val wr = FileWriter("input.xml")
+        val write = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
+                "<?xml-stylesheet type=\"text/css\" href=\"style.css\"?>\n" +
+                "<qwe xmlns=\"http://t.e.s.t\">\n" +
+                "  <myns:rty xmlns:myns=\"http://y.e.s\">yes!</myns:rty>\n" +
+                "  <iop value=\"yes, yes!\"/>\n" +
+                "</qwe>"
+        wr.write(write)
+        wr.close()
+        val `in` = FileInputStream("input.xml")
+        val out = FileOutputStream("out.xml")
+        test.process(`in`, out)
+        val contentBuilder = StringBuilder()
+        val stream = Files.lines(Paths.get("out.xml"), StandardCharsets.UTF_8)
+        run { stream.forEach { s -> contentBuilder.append(s).append("") } }
+        val etalon = "<ns1:qwe xmlns:ns1=\"http://t.e.s.t\">\n" +
+                "  <ns2:rty xmlns:ns2=\"http://y.e.s\">yes!</ns2:rty>\n" +
+                "  <ns1:iop value=\"yes, yes!\"></ns1:iop>\n" +
+                "</ns1:qwe>"
+        assertEquals(etalon, contentBuilder.toString())
+    }
+
+
+    @Test
     fun processini() {
         val test = SmevImportedTransForm()
         val wr = FileWriter("input.xml")
