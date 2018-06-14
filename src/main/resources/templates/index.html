@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <link rel="stylesheet" media="screen" href="/public/stylesheets/main.css">
+    <meta charset="UTF-8">
+    <title>ТехноДемо</title>
+    <script src="https://use.fontawesome.com/58d308af1d.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
-    <textarea rows="10" cols="80">
-        <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1">   <S:Body>      <ns2:SendRequestRequest xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">         <ns:SenderProvidedRequestData Id="SIGNED_BY_CONSUMER" xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">	<ns:MessageID>a3c69138-6bf1-11e8-a126-6d349ec8de0d</ns:MessageID><ns2:MessagePrimaryContent><ns1:BreachRequest xmlns:ns1="urn://x-artefacts-gibdd-gov-ru/breach/root/1.0"  xmlns:ns2="urn://x-artefacts-gibdd-gov-ru/breach/commons/1.0"  xmlns:ns3="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" Id="PERSONAL_SIGNATURE"> <ns1:RequestedInformation> <ns2:RegPointNum>Т785ЕС57</ns2:RegPointNum> </ns1:RequestedInformation> <ns1:Governance> <ns2:Name>ГИБДД РФ</ns2:Name> <ns2:Code>GIBDD</ns2:Code> <ns2:OfficialPerson> <ns3:FamilyName>Загурский</ns3:FamilyName> <ns3:FirstName>Андрей</ns3:FirstName> <ns3:Patronymic>Петрович</ns3:Patronymic> </ns2:OfficialPerson></ns1:Governance> </ns1:BreachRequest> </ns2:MessagePrimaryContent>	<ns:TestMessage/></ns:SenderProvidedRequestData>         <ns2:CallerInformationSystemSignature><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411"/><ds:Reference URI="#SIGNED_BY_CONSUMER"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:Transform Algorithm="urn://smev-gov-ru/xmldsig/transform"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr3411"/><ds:DigestValue>/jXl70XwnttJB5sSokwh8SaVHwo2gjgILSu0qBaLUAo=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>J3746ks34pOcPGQpKzc0sz3n9+gjPtzZbSEEs4c3sTwbtfdaY7N/hxXzEIvXc+3ad9bc35Y8yBhZ/BYbloGt+Q==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIBcDCCAR2gAwIBAgIEHVmVKDAKBgYqhQMCAgMFADAtMRAwDgYDVQQLEwdTWVNURU0xMQwwCgYDVQQKEwNJUzIxCzAJBgNVBAYTAlJVMB4XDTE1MDUwNzEyMTUzMFoXDTE4MDUwNjEyMTUzMFowLTEQMA4GA1UECxMHU1lTVEVNMTEMMAoGA1UEChMDSVMyMQswCQYDVQQGEwJSVTBjMBwGBiqFAwICEzASBgcqhQMCAiMBBgcqhQMCAh4BA0MABEDoWGZlTUWD43G1N7TEm14+QyXrJWProrzoDoCJRem169q4bezFOUODcNooQJNg3PtAizkWeFcX4b93u8fpVy7RoyEwHzAdBgNVHQ4EFgQUaRG++MAcPZvK/E2vR1BBl5G7s5EwCgYGKoUDAgIDBQADQQCg25vA3RJL3kgcJhVOHA86vnkMAtZYr6HBPa7LpEo0HJrbBF0ygKk50app1lzPdZ5TtK2itfmNgTYiuQHX3+nE</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></ns2:CallerInformationSystemSignature>      </ns2:SendRequestRequest>   </S:Body></S:Envelope>
-    </textarea>
-    <button>Send SOAP</button>
-    <textarea rows="10" cols="80">
-    </textarea>
+<nav class="navbar-inverse navbar-default fixed-top align-middle" role="navigation" draggable="true">
+    <div class="container-fluid" >
+        <!-- Название компании и кнопка, которая отображается для мобильных устройств группируются для лучшего отображения при свертывании -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-dark bg-dark navbar-nav navleft" width = 100% >
+                <li class="align-middle "><a href="/transform" class="align-middle"  style="cursor: pointer; color: white;">Transform</a></li>
+                <li class="align-text-bottom"><a  href="/soap" class="align-text-bottom"  style="cursor: pointer; color: white;">send SOAP</a></li>
+                <li class="align-text-bottom"><a  href="/uuid" class="align-text-bottom"  style="cursor: pointer; color: white;">UUID</a></li>
+                <li class="align-text-bottom"><a  href="/hash" class="align-text-bottom"  style="cursor: pointer; color: white;" >Hash</a></li>
+            </ul>
+        </div>
+
+        <!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="uuid" style="margin: 20px 0px 20px 20px; text-align:center; color: #333">
+    <h5>Выберите любое действие tranform - преобразовать xml<br>Send soap - запустить в СМЕВ3 xml и получить ответ/тестовый файл можно найти в корне папки 1.xml</h5>
+    <h5>uuid - получить актуальный uuid<br>hash вычислить base64 хеш ГОСТ3411/94 любого файла</h5>
+</div>
+
 </body>
 </html>

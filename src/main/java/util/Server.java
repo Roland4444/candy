@@ -1,11 +1,12 @@
+package util;
+
 import static spark.Spark.*;
 
 import spark.ModelAndView;
 
 import spark.template.velocity.VelocityTemplateEngine;
-import spark.utils.IOUtils;
-import util.SmevImportedTransForm;
-import util.timeBasedUUID;
+
+
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletResponse;
@@ -52,38 +53,23 @@ public class Server {
             return template.render(view);
         });
 
-        post("/api/upload", (req, res) -> {
-            req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("./"));
-            Part filePart = req.raw().getPart("myfile");
+        post("/soap", (req,res)->{
+            String mx = req.queryParams("message");
+            System.out.print(mx);
+            FileWriter wr = new FileWriter("exch.xml");
+            wr.write(mx);
+            SAAJ saa= new SAAJ("http://smev3-n0.test.gosuslugi.ru:7500/ws?wsdl");
+            saa.send("12.xml", "results.xml");
+            return "";
+        }
+        );
 
 
-            try (InputStream inputStream = filePart.getInputStream()) {
-                OutputStream outputStream = new FileOutputStream( filePart.getSubmittedFileName());
-                IOUtils.copy(inputStream, outputStream);
-                outputStream.close();
-            }
+        get("/soapg", (req,res)->{
+                    return req.queryParams("message");
+                }
+        );
 
-            SmevImportedTransForm test = new SmevImportedTransForm();
-            InputStream in  = new FileInputStream( filePart.getSubmittedFileName());
-            OutputStream out  = new FileOutputStream("out.xml");
-            test.process(in, out);
 
-            File f = new File("out.xml");
-            while (!f.exists())  {
-
-            }
-
-            try {
-                byte[] bytes = Files.readAllBytes(Paths.get("out.xml"));
-                HttpServletResponse raw = res.raw();
-                raw.getOutputStream().write(bytes);
-                raw.getOutputStream().flush();
-                raw.getOutputStream().close();
-            } catch (Exception e) {
-                halt(405,"server error");
-            }
-            return res;
-
-        });
     }
 }

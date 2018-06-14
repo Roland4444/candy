@@ -25,22 +25,23 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-dark bg-dark navbar-nav navleft" width = 100% >
-                <li class="align-middle "><a  class="align-middle"  style="cursor: pointer; color: white;">Transform</a></li>
-                <li class="align-text-bottom"><a  class="align-text-bottom"  style="cursor: pointer; color: white;">send SOAP</a></li>
-                <li class="align-text-bottom"><a  href="" class="align-text-bottom"  style="cursor: pointer; color: white;">UUID</a></li>
-                <li class="align-text-bottom"><a  class="align-text-bottom"  style="cursor: pointer; color: white;" >Hash</a></li>
+                <li class="align-middle "><a href="/transform" class="align-middle"  style="cursor: pointer; color: white;">Transform</a></li>
+                <li class="align-text-bottom"><a  href="/soap" class="align-text-bottom"  style="cursor: pointer; color: white;">send SOAP</a></li>
+                <li class="align-text-bottom"><a  href="/uuid" class="align-text-bottom"  style="cursor: pointer; color: white;">UUID</a></li>
+                <li class="align-text-bottom"><a  href="/hash" class="align-text-bottom"  style="cursor: pointer; color: white;" >Hash</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <p>The form below contains a textarea for comments:</p>
 
         <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment">$message</textarea>
-            <button>Send</button>
+            <form  enctype='multipart/form-data'  method="POST">
+                <label >=>:</label>
+                <input name="uploaded_file" type="file">
+                <button>Upload </button>
+            </form>
         </div>
 
 </div>

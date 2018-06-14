@@ -50,7 +50,7 @@ compileTestKotlin {
 jar {
     from { configurations.compile.collect { it.isDirectory() ? it :
             zipTree(it) } }
-    manifest { attributes 'Main-Class': 'server' }
+    manifest { attributes 'Main-Class': 'Server' }
     File directory1 = new File("build/");
     if (! directory1.exists()){
         directory1.mkdir();
